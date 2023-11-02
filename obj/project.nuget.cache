@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "sU4sNeZ8UtM3Gp34j95GC0IgOMc2X+R+e7g6llM45mthwH0vzQkWb3VYr/At1a+zb2rhbfcHZp8FSHJuY/N7Qw==",
+  "dgSpecHash": "DHJxfNqylIzoQ0LlsQQZrLFYaHTEYBLuXGZaCxDDxrvjNYeufWoUqhP39rQzs/9P/cvZ9M6g8/XyB7jwOAc7Wg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\melis\\OneDrive\\Desktop\\CIT 255\\SimplePasswordHash\\SimplePasswordHash.csproj",
+  "projectFilePath": "C:\\Users\\jp811\\Source\\Repos\\HashingTrainingModule\\SimplePasswordHash.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
