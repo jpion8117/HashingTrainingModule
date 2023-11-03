@@ -35,7 +35,7 @@ namespace SimplePasswordHash
                 var hashData = sha256.ComputeHash(dataBytes);   //Take the input data and compute it's hash as an array
                                                                 //of bytes
 
-                hash = ConvertBytes(hashData);                  //Encode the byte array as a string to make it easier to 
+                hash = Convert.ToHexString(hashData);           //Encode the byte array as a string to make it easier to 
                                                                 //save the data.
             }
 
@@ -59,26 +59,11 @@ namespace SimplePasswordHash
                 var hashData = sha256.ComputeHash(data);    //Take the input data and compute it's hash as an array
                                                             //of bytes
 
-                hash = ConvertBytes(hashData);              //Encode the byte array as a string to make it easier to 
+                hash = Convert.ToHexString(hashData);       //Encode the byte array as a string to make it easier to 
                                                             //save the data.
             }
 
             return hash;                                    //Return the computed hash.
-        }
-
-        /// <summary>
-        /// Converts an array of bytes to a hexadecimal string representation of the array.
-        /// </summary>
-        /// <param name="bytes">Byte array to be converted</param>
-        /// <returns>Hexadecimal representation of the byte array</returns>
-        public static string ConvertBytes(byte[] bytes)
-        {
-            string str = "";
-
-            str = Convert.ToHexString(bytes);       //Using the ASCII encoding method, convert an array of bytes to into
-                                                    //a string.
-
-            return str;
         }
 
         /// <summary>
@@ -100,7 +85,7 @@ namespace SimplePasswordHash
                 random.GetBytes(randomBytes, 0, size);                  //using the Random Number Generator, get the random
                                                                         //bytes that will form the salt
 
-                saltShaker = Hasher.ConvertBytes(randomBytes);          //convert the random bytes array to a string.
+                saltShaker = Convert.ToHexString(randomBytes);          //convert the random bytes array to a string.
             }
 
             return saltShaker;
