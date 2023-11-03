@@ -19,7 +19,7 @@ namespace SimplePasswordHash
         /// hashing algorithm output</returns>
         public static string Compute(string data)
         {
-            string hash;                                        //Create a variable to store the computed hash
+            string hash;                                        //Create a variable to store the computed hash 
 
             using (var sha256 = SHA256.Create())                //Create an sha512 instance to compute the hash
             {
