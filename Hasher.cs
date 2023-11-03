@@ -18,28 +18,13 @@ namespace SimplePasswordHash
         /// <returns>String of hexadecimal characters representing the 
         /// hashing algorithm output</returns>
         public static string Compute(string data)
-        {
-            string hash;                                        //Create a variable to store the computed hash
+        { 
+            //Create a variable to store the computed hash
+            string skillet = "";
 
-            using (var sha256 = SHA256.Create())                //Create an sha512 instance to compute the hash
-            {
-                var dataBytes = Encoding.UTF8.GetBytes(data);   //strings can not be directly passed to the SHA256
-                                                                //ComputeHash method. They must first be converted
-                                                                //to a data type the method can accept. In this case
-                                                                //we chose to convert them into an array of bytes,
-                                                                //but there are other conversions that would also
-                                                                //work. Such as converting the string to some type
-                                                                //of stream object, but that is beyond the scope of
-                                                                //this demo.
+            /******************** your code goes here! ********************/
 
-                var hashData = sha256.ComputeHash(dataBytes);   //Take the input data and compute it's hash as an array
-                                                                //of bytes
-
-                hash = ConvertBytes(hashData);                  //Encode the byte array as a string to make it easier to 
-                                                                //save the data.
-            }
-
-            return hash;                                        //Return the computed hash.
+            return skillet;
         }
 
         /// <summary>
@@ -52,33 +37,12 @@ namespace SimplePasswordHash
         /// hashing algorithm output</returns>
         public static string Compute(Stream data)
         {
-            string hash;                                    //Create a variable to store the computed hash
+            //Create a variable to store the computed hash
+            string skillet = "";
 
-            using (var sha256 = SHA256.Create())            //Create an sha512 instance to compute the hash
-            {
-                var hashData = sha256.ComputeHash(data);    //Take the input data and compute it's hash as an array
-                                                            //of bytes
+            /******************** your code goes here! ********************/
 
-                hash = ConvertBytes(hashData);              //Encode the byte array as a string to make it easier to 
-                                                            //save the data.
-            }
-
-            return hash;                                    //Return the computed hash.
-        }
-
-        /// <summary>
-        /// Converts an array of bytes to a hexadecimal string representation of the array.
-        /// </summary>
-        /// <param name="bytes">Byte array to be converted</param>
-        /// <returns>Hexadecimal representation of the byte array</returns>
-        public static string ConvertBytes(byte[] bytes)
-        {
-            string str = "";
-
-            str = Convert.ToHexString(bytes);       //Using the ASCII encoding method, convert an array of bytes to into
-                                                    //a string.
-
-            return str;
+            return skillet; 
         }
 
         /// <summary>
@@ -90,18 +54,10 @@ namespace SimplePasswordHash
         /// <returns>randomly generated hexadecimal string</returns>
         public static string GenerateSalt(int size = 32)
         {
-            string saltShaker = "";                                     //string that will store the salt.
+            //create a string to hold the generated salt.
+            string saltShaker = "";
 
-            using (var random = RandomNumberGenerator.Create())         //generate a random salt using System.Cryptography
-            {
-                byte[] randomBytes = new byte[size];                    //byte array to store random bytes that will make
-                                                                        //up the salt
-
-                random.GetBytes(randomBytes, 0, size);                  //using the Random Number Generator, get the random
-                                                                        //bytes that will form the salt
-
-                saltShaker = Hasher.ConvertBytes(randomBytes);          //convert the random bytes array to a string.
-            }
+            /******************** your code goes here! ********************/
 
             return saltShaker;
         }
