@@ -178,16 +178,23 @@ namespace HashingDemo
 
         private static void VerifyFiles()
         {
+            var filesDirectory = new DirectoryInfo("files");
+            var files = filesDirectory.GetFiles();
+
             Console.Clear();
             Console.WriteLine("Welcome to the file integrety demo! Please enter two files to compare from the files folder.");
+
+            Console.WriteLine("\nHere are the files availabe to check:");
+            foreach (var file in files) Console.WriteLine("     " + file.Name);
 
             string[] filenames = new string[2];
             string[] fileHashes = new string[2];
 
+            Console.WriteLine("\nPlease type the names of the two files you want to compare.\n");
+
             for (int i = 0; i < filenames.Length; i++)
             {
-                Console.WriteLine();
-                Console.Write($"Please enter the name of file {i + 1}: ");
+                Console.Write($"     file {i + 1}: ");
                 filenames[i] = Path.Combine("files", Console.ReadLine());
 
                 if (!File.Exists(filenames[i])) 
