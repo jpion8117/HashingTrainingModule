@@ -10,28 +10,41 @@ namespace SimplePasswordHash
     internal class Hasher
     {
         /// <summary>
-        /// Compute a hash as a string 
+        /// Compute a hash and return a string representing the hash 
+        /// value as a string of hexadecimal characters. This overload 
+        /// takes in a string to be hashed.
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public static string Compute(byte[] data)
+        public static string Compute(string data)
         {
-            string hash;                                    //Create a variable to store the computed hash
+            string hash;                                        //Create a variable to store the computed hash
 
-            using (var sha256 = SHA256.Create())            //Create an sha512 instance to compute the hash
+            using (var sha256 = SHA256.Create())                //Create an sha512 instance to compute the hash
             {
-                var hashData = sha256.ComputeHash(data);    //Take the input data and compute it's hash as an array
-                                                            //of bytes
+                var dataBytes = Encoding.UTF8.GetBytes(data);   //strings can not be directly passed to the SHA256
+                                                                //ComputeHash method. They must first be converted
+                                                                //to a data type the method can accept. In this case
+                                                                //we chose to convert them into an array of bytes,
+                                                                //but there are other conversions that would also
+                                                                //work. Such as converting the string to some type
+                                                                //of stream object, but that is beyond the scope of
+                                                                //this demo.
 
-                hash = ConvertBytes(hashData);              //Encode the byte array as a string to make it easier to 
-                                                            //save the data.
+                var hashData = sha256.ComputeHash(dataBytes);   //Take the input data and compute it's hash as an array
+                                                                //of bytes
+
+                hash = ConvertBytes(hashData);                  //Encode the byte array as a string to make it easier to 
+                                                                //save the data.
             }
 
-            return hash;                                    //Return the computed hash.
+            return hash;                                        //Return the computed hash.
         }
 
         /// <summary>
-        /// Compute a hash as a string 
+        /// Compute a hash and return a string representing the hash 
+        /// value as a string of hexadecimal characters. This overload 
+        /// takes in a Stream to be hashed.
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>

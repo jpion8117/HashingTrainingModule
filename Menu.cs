@@ -69,8 +69,8 @@ namespace HashingDemo
             if (SaltsEnabled) _salt = Hasher.GenerateSalt();                    //Generate a salt or reset the salt 
             else _salt = "";                                                    //if salting is disabled
 
-            _passwordHash = Hasher.Compute(Hasher.ConvertString(                //compute the hash from the plaintext
-                _password + _salt));                                            //password.   
+            _passwordHash = Hasher.Compute(_password + _salt);                 //compute the hash from the plaintext
+                                                        //password.   
 
             Console.WriteLine($"The password has been set to '{_password}'");
             Console.Write("\nPress any key to continue...");
@@ -95,8 +95,7 @@ namespace HashingDemo
 
             Console.Write("Please enter secret: ");
             string input = Console.ReadLine();
-            string inputHash = Hasher.Compute(Hasher.ConvertString(
-                input + _salt));
+            string inputHash = Hasher.Compute(input + _salt);
 
             Console.WriteLine("\n------------------------------------- A Look at the Data -------------------------------------\n");
             Console.WriteLine($"           Stored Pass: {_password} (this would have been deleted not stored in real app)");
@@ -134,9 +133,9 @@ namespace HashingDemo
             Console.Write("Please enter a password to demonstrate: ");
             string password = Console.ReadLine();
             string[] blandHash = {
-                Hasher.Compute(Hasher.ConvertString(password)),
-                Hasher.Compute(Hasher.ConvertString(password)),
-                Hasher.Compute(Hasher.ConvertString(password))
+                Hasher.Compute(password),
+                Hasher.Compute(password),
+                Hasher.Compute(password)
             };
 
             Console.WriteLine($"\nWithout salting, everyone who used the password '{password}' would have the following hashes...\n");
@@ -154,9 +153,9 @@ namespace HashingDemo
             //This adds randomness that makes significantly changes the resulting hashes. Normally you would save the salt
             //values with the password so you can still validate the resulting hashes.
             string[] saltyHash = {
-                Hasher.Compute(Hasher.ConvertString(password + Hasher.GenerateSalt())),
-                Hasher.Compute(Hasher.ConvertString(password + Hasher.GenerateSalt())),
-                Hasher.Compute(Hasher.ConvertString(password + Hasher.GenerateSalt()))
+                Hasher.Compute(password + Hasher.GenerateSalt()),
+                Hasher.Compute(password + Hasher.GenerateSalt()),
+                Hasher.Compute(password + Hasher.GenerateSalt())
             };
 
             Console.WriteLine($"If we hash all three passwords, but add some random data to the end of each one (salt) then all \n" +
