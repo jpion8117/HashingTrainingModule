@@ -29,6 +29,11 @@ namespace HashingDemo
             "q. Quit"
         };
 
+        /// <summary>
+        /// Menu entry point. This method takes the input supplied by the user 
+        /// and calls a method that performs the specified action.
+        /// </summary>
+        /// <param name="input">User input</param>
         public static void ProcSelection(int input)
         {
             switch (input)
@@ -52,6 +57,12 @@ namespace HashingDemo
             }
         }
 
+        /// <summary>
+        /// Sets the "password" and it's corrisponding hash for the purpose of demonstrating how 
+        /// hashing is used to store a password without actually needing to know what the password
+        /// is in order to verify it.
+        /// </summary>
+        /// <param name="tooShort">used to reprompt user if the password was too short</param>
         private static void SetSecret(bool tooShort = false)
         {
             Console.Clear();                                            
@@ -70,13 +81,23 @@ namespace HashingDemo
             else _salt = "";                                                    //if salting is disabled
 
             _passwordHash = Hasher.Compute(_password + _salt);                 //compute the hash from the plaintext
-                                                        //password.   
+                                                                               //password and the salt (if applied).   
 
-            Console.WriteLine($"The password has been set to '{_password}'");
+            Console.WriteLine($"The password has been set to '{_password}'");  
+            Console.WriteLine($"The hash associated with the password " +
+                $"'{_password}' and the salt '{_salt}' is " +
+                $"'{_passwordHash}'");
             Console.Write("\nPress any key to continue...");
             Console.ReadKey();                                                                                                                  
         }
 
+        /// <summary>
+        /// Asks the user to enter a password. Combines the password with the salt (if enabled when password was set)
+        /// then runs the password through Hasher.Compute to get a hash. If the newly computed hash matches the stored
+        /// hash for the password, it tells the user access granted. If not it says accesss denied. Reguardless, it will 
+        /// show the user the password they entered, the correct password, and the hash values for each. This allows 
+        /// users of this demo to "see" how hashing can be used to verify passwords.
+        /// </summary>
         private static void VerifySecret()
         {
             Console.Clear();
