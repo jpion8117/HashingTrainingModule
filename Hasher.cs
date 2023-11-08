@@ -22,8 +22,23 @@ namespace SimplePasswordHash
             //Create a variable to store the computed hash
             string skillet = "";
 
-            /******************** your code goes here! ********************/
+            using (var sha256 = SHA256.Create())                //Create an sha512 instance to compute the hash
+            {
+                var dataBytes = Encoding.UTF8.GetBytes(data);   //strings can not be directly passed to the SHA256
+                                                                //ComputeHash method. They must first be converted
+                                                                //to a data type the method can accept. In this case
+                                                                //we chose to convert them into an array of bytes,
+                                                                //but there are other conversions that would also
+                                                                //work. Such as converting the string to some type
+                                                                //of stream object, but that is beyond the scope of
+                                                                //this demo.
 
+                var hashData = sha256.ComputeHash(dataBytes);   //Take the input data and compute it's hash as an array
+                                                                //of bytes
+
+                skillet = Convert.ToHexString(hashData);        //Encode the byte array as a string to make it easier to 
+                                                                //save the data.
+            }
             return skillet;
         }
 
