@@ -65,9 +65,12 @@ namespace HashingDemo
             else _salt = "";                                                    //if salting is disabled
 
             _passwordHash = Hasher.Compute(_password + _salt);                 //compute the hash from the plaintext
-                                                        //password.   
+                                                                               //password.   
 
             Console.WriteLine($"The password has been set to '{_password}'");
+            Console.WriteLine($"The hash associated with the password " +
+                $"'{_password}' and the salt '{_salt}' is " +
+                $"'{_passwordHash}'");
             Console.Write("\nPress any key to continue...");
             Console.ReadKey();                                                                                                                  
         }
