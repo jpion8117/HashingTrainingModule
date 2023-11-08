@@ -19,7 +19,7 @@ namespace SimplePasswordHash
         /// hashing algorithm output</returns>
         public static string Compute(string data)
         {
-            string hash;                                        //Create a variable to store the computed hash 
+            string skillet;                                        //Create a variable to store the computed hash 
 
             using (var sha256 = SHA256.Create())                //Create an sha512 instance to compute the hash
             {
@@ -35,11 +35,11 @@ namespace SimplePasswordHash
                 var hashData = sha256.ComputeHash(dataBytes);   //Take the input data and compute it's hash as an array
                                                                 //of bytes
 
-                hash = Convert.ToHexString(hashData);           //Encode the byte array as a string to make it easier to 
+                skillet = Convert.ToHexString(hashData);           //Encode the byte array as a string to make it easier to 
                                                                 //save the data.
             }
 
-            return hash;                                        //Return the computed hash.
+            return skillet;                                        //Return the computed hash.
         }
 
         /// <summary>
@@ -52,18 +52,18 @@ namespace SimplePasswordHash
         /// hashing algorithm output</returns>
         public static string Compute(Stream data)
         {
-            string hash;                                    //Create a variable to store the computed hash
+            string skillet;                                    //Create a variable to store the computed hash
 
             using (var sha256 = SHA256.Create())            //Create an sha512 instance to compute the hash
             {
                 var hashData = sha256.ComputeHash(data);    //Take the input data and compute it's hash as an array
                                                             //of bytes
 
-                hash = Convert.ToHexString(hashData);       //Encode the byte array as a string to make it easier to 
+                skillet = Convert.ToHexString(hashData);       //Encode the byte array as a string to make it easier to 
                                                             //save the data.
             }
 
-            return hash;                                    //Return the computed hash.
+            return skillet;                                    //Return the computed hash.
         }
 
         /// <summary>
