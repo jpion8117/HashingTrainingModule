@@ -15,7 +15,7 @@ namespace HashingDemo
         private static string _salt = "";
         private static string _passwordHash = "";
 
-        public static bool SaltsEnabled { get; private set; } = false;
+        public static bool SaltsEnabled { get; private set; } = true;
 
         public static string[] Prompts { get; private set; } = {
             $"saltsEnabled = {SaltsEnabled}",
@@ -23,8 +23,7 @@ namespace HashingDemo
             "1. Set secret",
             "2. Verify secret",
             "3. Salting Demo",
-            "4. Enable/Disable Salting",
-            "5. Verify files",
+            "4. Verify files",
             "",
             "q. Quit"
         };
@@ -47,11 +46,7 @@ namespace HashingDemo
                 case 3: //Salting demo!
                     SaltingDemo();
                     break;
-                case 4: //Enable/disable salting
-                    SaltsEnabled = !SaltsEnabled;
-                    Prompts[0] = $"saltsEnabled = {SaltsEnabled}";
-                    break;
-                case 5: //Verify files
+                case 4: //Verify files
                     VerifyFiles();
                     break;
             }
